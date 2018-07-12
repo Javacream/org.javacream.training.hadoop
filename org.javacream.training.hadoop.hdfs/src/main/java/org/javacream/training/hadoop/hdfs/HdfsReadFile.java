@@ -13,7 +13,7 @@ public class HdfsReadFile {
 
 	
 	private void readFile() throws Exception {
-		String uri = "hdfs://localhost:9000/user/root/demo.txt";
+		String uri = "hdfs://localhost:9000/user/root/hugo.txt";
 		Configuration conf = new Configuration();
 		FileSystem fs = FileSystem.get(URI.create(uri), conf);
 		InputStream in = null;

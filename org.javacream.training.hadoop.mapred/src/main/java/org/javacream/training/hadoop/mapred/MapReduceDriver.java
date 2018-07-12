@@ -10,7 +10,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
-public class MaxTemperatureDriver extends Configured implements Tool {
+public class MapReduceDriver extends Configured implements Tool {
 
 	@Override
 	public int run(String[] args) throws Exception {
@@ -20,7 +20,7 @@ public class MaxTemperatureDriver extends Configured implements Tool {
 		FileInputFormat.addInputPath(job, new Path(args[0]));
 		FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
-		job.setMapperClass(MaxTemperatureMapper.class);
+		job.setMapperClass(YearTemperatureMapper.class);
 		job.setCombinerClass(MaxTemperatureReducer.class);
 		job.setReducerClass(MaxTemperatureReducer.class);
 
@@ -31,10 +31,10 @@ public class MaxTemperatureDriver extends Configured implements Tool {
 	}
 
 	public static void main(String[] args) throws Exception {
-		if (args.length != 2) {
+		if (args.length == 0) {
 			args = new String[] {"input/data", "output" + System.currentTimeMillis()};
 		}
-		int exitCode = ToolRunner.run(new MaxTemperatureDriver(), args);
+		int exitCode = ToolRunner.run(new MapReduceDriver(), args);
 		System.exit(exitCode);
 	}
 }
