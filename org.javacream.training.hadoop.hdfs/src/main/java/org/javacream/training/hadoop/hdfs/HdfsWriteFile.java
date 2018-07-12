@@ -11,10 +11,10 @@ public class HdfsWriteFile {
 
 
 	private void writeFile() throws Exception {
-		String uri = "hdfs://localhost:9000";
+		String uri = "hdfs://10.8.5.45:9000";
 		Configuration conf = new Configuration();
 		FileSystem fs = FileSystem.get(URI.create(uri), conf, "root");
-		Path name = new Path("/user/root/demo.txt");
+		Path name = new Path("testIp.txt");
 		FSDataOutputStream stm = fs.create(name);
 		stm.writeBytes("Hello Hadoop!");
 		stm.close();
